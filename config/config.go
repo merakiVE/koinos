@@ -7,7 +7,7 @@ import (
 	"errors"
 
 	"github.com/spf13/viper"
-	"github.com/merakiVE/CVDI/core/utils"
+	"github.com/merakiVE/koinos/utils"
 )
 
 var PATH_FILES_CONFIG []string

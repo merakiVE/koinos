@@ -4,8 +4,8 @@ import (
 	"reflect"
 
 	arangoDB "github.com/hostelix/aranGO"
-	"github.com/merakiVE/CVDI/core/config"
-	"github.com/merakiVE/CVDI/core/utils"
+	"github.com/merakiVE/koinos/config"
+	"github.com/merakiVE/koinos/utils"
 )
 
 var DBHOST, DBUSER, DBPASSWORD, DBNAME string

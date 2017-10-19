@@ -3,6 +3,7 @@ package db
 import (
 	"errors"
 	"github.com/hostelix/aranGO"
+	"encoding/json"
 )
 
 type modelerDBStruct struct {
@@ -23,7 +24,8 @@ func (this *modelerDBStruct) Create(m aranGO.Modeler) (error) {
 		return err
 	}
 	if e := ctx.Save(m); len(e) >= 1 {
-		return errors.New("Error save model in database")
+		error_str, _ := json.Marshal(e)
+		return errors.New("Error save model in database " + string(error_str))
 	}
 	return nil
 }

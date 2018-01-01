@@ -6,19 +6,19 @@ import (
 	"encoding/json"
 )
 
-type modelerDBStruct struct {
-	modeler aranGO.Modeler
+type ormStruct struct {
+	model aranGO.Modeler
 	db      *aranGO.Database
 }
 
-func Model(model aranGO.Modeler, db *aranGO.Database) *modelerDBStruct {
-	return &modelerDBStruct{
-		modeler: model,
+func Model(model aranGO.Modeler, db *aranGO.Database) *ormStruct {
+	return &ormStruct{
+		model: model,
 		db:      db,
 	}
 }
 
-func (this *modelerDBStruct) Create(m aranGO.Modeler) (error) {
+func (this *ormStruct) Create(m aranGO.Modeler) (error) {
 	ctx, err := aranGO.NewContext(this.db)
 	if err != nil {
 		return err
@@ -30,9 +30,9 @@ func (this *modelerDBStruct) Create(m aranGO.Modeler) (error) {
 	return nil
 }
 
-func (this *modelerDBStruct) FindOne(out interface{}, filter ...interface{}) (error) {
+func (this *ormStruct) FindOne(out interface{}, filter ...interface{}) (error) {
 	aql := aranGO.NewAqlStruct()
-	aql.For("v", this.modeler.GetCollection())
+	aql.For("v", this.model.GetCollection())
 	aql.Filter(filter...)
 	aql.Return("v")
 
@@ -47,9 +47,9 @@ func (this *modelerDBStruct) FindOne(out interface{}, filter ...interface{}) (er
 	return nil
 }
 
-func (this *modelerDBStruct) Find(out interface{}, filter ...interface{}) (error) {
+func (this *ormStruct) Find(out interface{}, filter ...interface{}) (error) {
 	aql := aranGO.NewAqlStruct()
-	aql.For("v", this.modeler.GetCollection())
+	aql.For("v", this.model.GetCollection())
 	aql.Filter(filter...)
 	aql.Return("v")
 

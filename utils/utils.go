@@ -30,7 +30,7 @@ func IsEmptyString(str string) (bool) {
 }
 
 func GenerateUUIDV4() (string) {
-	return strings.Replace(uuid.NewV4().String(), "-", "", -1)
+	return strings.Replace(uuid.Must(uuid.NewV4()).String(), "-", "", -1)
 }
 
 /*

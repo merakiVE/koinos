@@ -14,6 +14,20 @@ import (
 	"github.com/satori/go.uuid"
 )
 
+func InSlice(key string, slice []string) (bool) {
+	if len(strings.TrimSpace(key)) == 0 {
+		return false
+	}
+
+	for _, value := range slice {
+		if value == key {
+			return true
+		}
+	}
+	return false
+}
+
+
 func ReadBinaryFile(_path string) ([]byte, error) {
 	return ioutil.ReadFile(_path)
 }
